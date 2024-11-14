@@ -2,8 +2,9 @@ package gs.solinveste.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Set;
 
@@ -12,23 +13,27 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "NOME")
     private String name;
 
     @NotNull
+    @Size(min = 11, max = 11)
     @Column(name = "TELEFONE")
     private String phoneNumber;
 
     @Email
     @Column(name = "EMAIL")
+    @Size(min = 1, max = 100)
     private String email;
 
     @NotNull
     @Column(name = "SENHA")
+    @Size(min = 1, max = 100)
     private String password;
 
     @OneToMany(mappedBy = "user")

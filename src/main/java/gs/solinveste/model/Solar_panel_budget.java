@@ -1,7 +1,6 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
@@ -9,7 +8,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 public class Solar_panel_budget {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JoinColumn(name = "ID_ENDERECO")

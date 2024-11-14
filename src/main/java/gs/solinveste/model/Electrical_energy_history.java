@@ -1,9 +1,10 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 public class Electrical_energy_history {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JoinColumn(name = "ID_ENDERECO")
@@ -25,6 +26,7 @@ public class Electrical_energy_history {
 
     @NotNull
     @Column(name = "UNIDADE_MEDIDA")
+    @Size(min = 1, max = 10)
     private String measurementUnit;
 
     @Column(name = "DATA_REGISTRO")

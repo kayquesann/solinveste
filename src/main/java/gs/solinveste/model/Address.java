@@ -1,9 +1,10 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import java.util.Set;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JoinColumn(name = "ID_USUARIO")
@@ -21,14 +22,17 @@ public class Address {
 
     @NotNull
     @Column(name = "LOGRADOURO")
+    @Size(min = 1, max = 200)
     private String street;
 
     @NotNull
     @Column(name = "BAIRRO")
+    @Size(min = 1, max = 100)
     private String neighborhood;
 
     @NotNull
     @Column(name = "CEP")
+    @Size(min = 8, max = 20)
     private String CEP;
 
     @Positive
@@ -37,10 +41,12 @@ public class Address {
 
     @NotNull
     @Column(name = "CIDADE")
+    @Size(min = 1, max = 100)
     private String city;
 
     @NotNull
     @Column(name = "TIPO_LOCAL")
+    @Size(min = 1, max = 50)
     private String localType;
 
     @OneToMany(mappedBy = "addressBudget")
