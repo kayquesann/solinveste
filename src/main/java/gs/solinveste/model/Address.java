@@ -1,25 +1,49 @@
 package gs.solinveste.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "TB_ENDERECO_GE")
-public class Adress {
+public class Address {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @JoinColumn(name = "ID_USUARIO")
+    @OneToOne
     private User user;
+
+    @Column(name = "LOGRADOURO")
     private String street;
+
+    @Column(name = "BAIRRO")
     private String neighborhood;
+
+    @Column(name = "CEP")
     private String CEP;
+
+    @Column(name = "NUMERO_RESIDENCIA")
     private int houseNumber;
+
+    @Column(name = "CIDADE")
     private String city;
+
+    @Column(name = "TIPO_LOCAL")
     private String localType;
 
-    public Adress() {
+    @OneToMany(mappedBy = "addressBudget")
+    private Set<Solar_panel_budget> budgets;
+
+    @OneToMany(mappedBy = "addressHistory")
+    private Set<Electrical_energy_history> history;
+
+    public Address() {
     }
 
-    public Adress(Integer id, User user, String street, String neighborhood, String CEP, int houseNumber, String city, String localType) {
+    public Address(Integer id, User user, String street, String neighborhood, String CEP, int houseNumber, String city, String localType) {
         this.id = id;
         this.user = user;
         this.street = street;

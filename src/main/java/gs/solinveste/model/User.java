@@ -1,17 +1,31 @@
 package gs.solinveste.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "TB_USUARIO_GE")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(name = "NOME")
     private String name;
+
+    @Column(name = "TELEFONE")
     private String phoneNumber;
+
+    @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "SENHA")
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Address> addresses;
 
     public User() {
     }

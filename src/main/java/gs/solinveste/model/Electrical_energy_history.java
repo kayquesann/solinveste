@@ -1,7 +1,6 @@
 package gs.solinveste.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -9,19 +8,32 @@ import java.time.LocalDate;
 @Table(name = "TB_HISTORICO_ENERGIA_ELETRICA_GE")
 public class Electrical_energy_history {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Adress adress;
+
+    @JoinColumn(name = "ID_ENDERECO")
+    @OneToOne
+    private Address addressHistory;
+    
+    @Column(name = "CONSUMO")
     private double consumption;
+
+    @Column(name = "UNIDADE_MEDIDA")
     private String measurementUnit;
+
+    @Column(name = "DATA_REGISTRO")
     private LocalDate registryDate;
+
+    @Column(name = "CUSTO")
     private double cost;
 
     public Electrical_energy_history() {
     }
 
-    public Electrical_energy_history(Integer id, Adress adress, double consumption, String measurementUnit, LocalDate registryDate, double cost) {
+    public Electrical_energy_history(Integer id, Address addressHistory, double consumption, String measurementUnit, LocalDate registryDate, double cost) {
         this.id = id;
-        this.adress = adress;
+        this.addressHistory = addressHistory;
         this.consumption = consumption;
         this.measurementUnit = measurementUnit;
         this.registryDate = registryDate;
@@ -36,12 +48,12 @@ public class Electrical_energy_history {
         this.id = id;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAddressHistory() {
+        return addressHistory;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setAddressHistory(Address addressHistory) {
+        this.addressHistory = addressHistory;
     }
 
     public double getConsumption() {

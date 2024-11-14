@@ -1,25 +1,37 @@
 package gs.solinveste.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TB_ORCAMENTO_PAINEL_SOLAR_GE")
 public class Solar_panel_budget {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Adress adress;
+
+    @JoinColumn(name = "ID_ENDERECO")
+    @OneToOne
+    private Address addressBudget;
+
+    @Column(name = "CUSTO_INVESTIMENTO")
     private double investmentCost;
+
+    @Column(name = "TAMANHO_SISTEMA")
     private double systemSize;
+
+    @Column(name = "NUMERO_MODULOS")
     private int modulesNumber;
+
+    @Column(name = "PRODUCAO_ANUAL_ESTIMADA")
     private double estimatedAnnualProduction;
 
     public Solar_panel_budget() {
     }
 
-    public Solar_panel_budget(Integer id, Adress adress, double investmentCost, double systemSize, int modulesNumber, double estimatedAnnualProduction) {
+    public Solar_panel_budget(Integer id, Address addressBudget, double investmentCost, double systemSize, int modulesNumber, double estimatedAnnualProduction) {
         this.id = id;
-        this.adress = adress;
+        this.addressBudget = addressBudget;
         this.investmentCost = investmentCost;
         this.systemSize = systemSize;
         this.modulesNumber = modulesNumber;
@@ -34,12 +46,12 @@ public class Solar_panel_budget {
         this.id = id;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAddressBudget() {
+        return addressBudget;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setAddressBudget(Address addressBudget) {
+        this.addressBudget = addressBudget;
     }
 
     public double getInvestmentCost() {
