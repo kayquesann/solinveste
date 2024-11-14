@@ -1,7 +1,7 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -50,10 +50,10 @@ public class Address {
     private String localType;
 
     @OneToMany(mappedBy = "addressBudget")
-    private Set<Solar_panel_budget> budgets;
+    private Set<SolarPanelBudget> budgets;
 
     @OneToMany(mappedBy = "addressHistory")
-    private Set<Electrical_energy_history> history;
+    private Set<ElectricalEnergyHistory> history;
 
     public Address() {
     }

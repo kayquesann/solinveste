@@ -1,7 +1,6 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
@@ -10,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "TB_HISTORICO_ENERGIA_ELETRICA_GE")
-public class Electrical_energy_history {
+public class ElectricalEnergyHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,10 +35,10 @@ public class Electrical_energy_history {
     @Column(name = "CUSTO")
     private double cost;
 
-    public Electrical_energy_history() {
+    public ElectricalEnergyHistory() {
     }
 
-    public Electrical_energy_history(Integer id, Address addressHistory, double consumption, String measurementUnit, LocalDate registryDate, double cost) {
+    public ElectricalEnergyHistory(Integer id, Address addressHistory, double consumption, String measurementUnit, LocalDate registryDate, double cost) {
         this.id = id;
         this.addressHistory = addressHistory;
         this.consumption = consumption;

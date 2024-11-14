@@ -5,7 +5,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "TB_ORCAMENTO_PAINEL_SOLAR_GE")
-public class Solar_panel_budget {
+public class SolarPanelBudget {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +31,10 @@ public class Solar_panel_budget {
     @Column(name = "PRODUCAO_ANUAL_ESTIMADA")
     private double estimatedAnnualProduction;
 
-    public Solar_panel_budget() {
+    public SolarPanelBudget() {
     }
 
-    public Solar_panel_budget(Integer id, Address addressBudget, double investmentCost, double systemSize, int modulesNumber, double estimatedAnnualProduction) {
+    public SolarPanelBudget(Integer id, Address addressBudget, double investmentCost, double systemSize, int modulesNumber, double estimatedAnnualProduction) {
         this.id = id;
         this.addressBudget = addressBudget;
         this.investmentCost = investmentCost;
