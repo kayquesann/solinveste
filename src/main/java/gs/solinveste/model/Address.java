@@ -1,6 +1,9 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.Set;
 
@@ -16,21 +19,27 @@ public class Address {
     @OneToOne
     private User user;
 
+    @NotNull
     @Column(name = "LOGRADOURO")
     private String street;
 
+    @NotNull
     @Column(name = "BAIRRO")
     private String neighborhood;
 
+    @NotNull
     @Column(name = "CEP")
     private String CEP;
 
+    @Positive
     @Column(name = "NUMERO_RESIDENCIA")
     private int houseNumber;
 
+    @NotNull
     @Column(name = "CIDADE")
     private String city;
 
+    @NotNull
     @Column(name = "TIPO_LOCAL")
     private String localType;
 

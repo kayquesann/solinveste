@@ -1,6 +1,9 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.time.LocalDate;
 
@@ -15,16 +18,19 @@ public class Electrical_energy_history {
     @JoinColumn(name = "ID_ENDERECO")
     @OneToOne
     private Address addressHistory;
-    
+
+    @PositiveOrZero
     @Column(name = "CONSUMO")
     private double consumption;
 
+    @NotNull
     @Column(name = "UNIDADE_MEDIDA")
     private String measurementUnit;
 
     @Column(name = "DATA_REGISTRO")
     private LocalDate registryDate;
 
+    @PositiveOrZero
     @Column(name = "CUSTO")
     private double cost;
 

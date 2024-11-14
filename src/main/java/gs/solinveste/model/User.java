@@ -1,6 +1,9 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Set;
 
@@ -12,15 +15,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
     @Column(name = "NOME")
     private String name;
 
+    @NotNull
     @Column(name = "TELEFONE")
     private String phoneNumber;
 
+    @Email
     @Column(name = "EMAIL")
     private String email;
 
+    @NotNull
     @Column(name = "SENHA")
     private String password;
 

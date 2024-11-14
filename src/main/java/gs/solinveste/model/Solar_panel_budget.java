@@ -1,6 +1,8 @@
 package gs.solinveste.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "TB_ORCAMENTO_PAINEL_SOLAR_GE")
@@ -14,15 +16,19 @@ public class Solar_panel_budget {
     @OneToOne
     private Address addressBudget;
 
+    @PositiveOrZero
     @Column(name = "CUSTO_INVESTIMENTO")
     private double investmentCost;
 
+    @PositiveOrZero
     @Column(name = "TAMANHO_SISTEMA")
     private double systemSize;
 
+    @PositiveOrZero
     @Column(name = "NUMERO_MODULOS")
     private int modulesNumber;
 
+    @PositiveOrZero
     @Column(name = "PRODUCAO_ANUAL_ESTIMADA")
     private double estimatedAnnualProduction;
 
