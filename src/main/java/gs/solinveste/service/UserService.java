@@ -116,13 +116,13 @@ public class UserService {
 
     //update the password from a user
 
-    public ReadUserDTO updatePassword (Integer id, String password) {
+    public String updatePassword (Integer id, String password) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             User existingUser = user.get();
             existingUser.setPassword(password);
             userRepository.save(existingUser);
-            return convertToReadUserDTO(existingUser);
+            return "Senha atualizada com sucesso";
         }else {
             throw new EntityNotFoundException("Usuário não encontrado");
         }
