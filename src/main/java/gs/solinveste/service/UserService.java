@@ -24,7 +24,7 @@ public class UserService {
     }
 
     // Convert an entity to DTO to save a new user
-    
+
     public SaveUserDTO convertToSaveUserDTO (User user) {
         SaveUserDTO saveUserDTO = new SaveUserDTO();
         saveUserDTO.setId(user.getId());
