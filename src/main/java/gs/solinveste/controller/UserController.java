@@ -24,20 +24,20 @@ public class UserController {
         return ResponseEntity.ok(newUser);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping("email/{id}/{email}")
-    public ResponseEntity<ReadUserDTO> updateEmail (@PathVariable Integer id, @PathVariable String email) {
+    @PutMapping("email/{id}")
+    public ResponseEntity<ReadUserDTO> updateEmail (@PathVariable Integer id, @RequestBody String email) {
         ReadUserDTO user = userService.updateEmail(id, email);
         return ResponseEntity.ok(user);
     }
 
-    @PatchMapping("email/{id}/{password}")
-    public ResponseEntity<String> updatePassword (@PathVariable Integer id, @PathVariable String password) {
+    @PutMapping("senha/{id}")
+    public ResponseEntity<String> updatePassword (@PathVariable Integer id, @RequestBody String password) {
         String status = userService.updatePassword(id, password);
         return ResponseEntity.ok(status);
     }
