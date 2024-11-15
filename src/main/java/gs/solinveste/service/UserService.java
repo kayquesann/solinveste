@@ -1,5 +1,6 @@
 package gs.solinveste.service;
 
+import gs.solinveste.dto.ChangePasswordDTO;
 import gs.solinveste.dto.ReadUserDTO;
 import gs.solinveste.dto.SaveUserDTO;
 import gs.solinveste.model.User;
@@ -41,7 +42,7 @@ public class UserService {
         ReadUserDTO readUserDTO = new ReadUserDTO();
         readUserDTO.setId(user.getId());
         readUserDTO.setName(user.getName());
-        readUserDTO.setEmail(user.getName());
+        readUserDTO.setEmail(user.getEmail());
         readUserDTO.setPhoneNumber(user.getPhoneNumber());
         return readUserDTO;
     }

@@ -1,5 +1,7 @@
 package gs.solinveste.controller;
 
+import gs.solinveste.dto.ChangeEmailDTO;
+import gs.solinveste.dto.ChangePasswordDTO;
 import gs.solinveste.dto.ReadUserDTO;
 import gs.solinveste.dto.SaveUserDTO;
 import gs.solinveste.model.User;
@@ -31,14 +33,14 @@ public class UserController {
     }
 
     @PutMapping("email/{id}")
-    public ResponseEntity<ReadUserDTO> updateEmail (@PathVariable Integer id, @RequestBody String email) {
-        ReadUserDTO user = userService.updateEmail(id, email);
+    public ResponseEntity<ReadUserDTO> updateEmail (@PathVariable Integer id, @RequestBody ChangeEmailDTO email) {
+        ReadUserDTO user = userService.updateEmail(id, email.getNewEmail());
         return ResponseEntity.ok(user);
     }
 
     @PutMapping("senha/{id}")
-    public ResponseEntity<String> updatePassword (@PathVariable Integer id, @RequestBody String password) {
-        String status = userService.updatePassword(id, password);
+    public ResponseEntity<String> updatePassword (@PathVariable Integer id, @RequestBody ChangePasswordDTO password) {
+        String status = userService.updatePassword(id, password.getNewPassword());
         return ResponseEntity.ok(status);
     }
 
