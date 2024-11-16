@@ -88,4 +88,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
+    }
 }

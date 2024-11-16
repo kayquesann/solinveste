@@ -132,4 +132,20 @@ public class Address {
     public void setLocalType(String localType) {
         this.localType = localType;
     }
+
+    public Set<SolarPanelBudget> getBudgets() {
+        return budgets;
+    }
+
+    public void setBudgets(Set<SolarPanelBudget> budgets) {
+        this.budgets = budgets;
+    }
+
+    public Set<ElectricalEnergyHistory> getHistory() {
+        return history;
+    }
+
+    public void setHistory(Set<ElectricalEnergyHistory> history) {
+        this.history = history;
+    }
 }
