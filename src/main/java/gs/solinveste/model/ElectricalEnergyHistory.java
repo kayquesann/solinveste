@@ -23,9 +23,8 @@ public class ElectricalEnergyHistory {
     @Column(name = "CONSUMO")
     private double consumption;
 
-    @NotNull
-    @Column(name = "UNIDADE_MEDIDA")
-    @Size(min = 1, max = 10)
+
+    @Column(name = "UNIDADE_MEDIDA", length = 10, nullable = false)
     private String measurementUnit;
 
     @Column(name = "DATA_REGISTRO")

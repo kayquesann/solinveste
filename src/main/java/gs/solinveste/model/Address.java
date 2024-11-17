@@ -20,33 +20,23 @@ public class Address {
     @OneToOne
     private User user;
 
-    @NotNull
-    @Column(name = "LOGRADOURO")
-    @Size(min = 1, max = 200)
+    @Column(name = "LOGRADOURO",length = 200, nullable = false)
     private String street;
 
-    @NotNull
-    @Column(name = "BAIRRO")
-    @Size(min = 1, max = 100)
+    @Column(name = "BAIRRO", length = 100, nullable = false)
     private String neighborhood;
 
-    @NotNull
-    @Column(name = "CEP")
-    @Size(min = 8, max = 20)
+    @Column(name = "CEP", length = 20, nullable = false)
     private String CEP;
 
     @Positive
     @Column(name = "NUMERO_RESIDENCIA")
     private int houseNumber;
 
-    @NotNull
-    @Column(name = "CIDADE")
-    @Size(min = 1, max = 100)
+    @Column(name = "CIDADE", length = 100, nullable = false)
     private String city;
 
-    @NotNull
-    @Column(name = "TIPO_LOCAL")
-    @Size(min = 1, max = 50)
+    @Column(name = "TIPO_LOCAL", length = 50, nullable = false)
     private String localType;
 
     @OneToMany(mappedBy = "addressBudget")

@@ -15,24 +15,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "NOME")
+    @Column(name = "NOME", length = 100, nullable = false)
     private String name;
 
-    @NotNull
-    @Size(min = 11, max = 11)
-    @Column(name = "TELEFONE")
+    @Column(name = "TELEFONE", length = 11, nullable = false)
     private String phoneNumber;
 
     @Email
-    @Column(name = "EMAIL")
-    @Size(min = 1, max = 100)
+    @Column(name = "EMAIL", length = 100, nullable = false)
     private String email;
 
-    @NotNull
-    @Column(name = "SENHA")
-    @Size(min = 1, max = 100)
+    @Column(name = "SENHA", length = 100, nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user")
