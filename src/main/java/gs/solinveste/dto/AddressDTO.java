@@ -20,7 +20,7 @@ public class AddressDTO {
 
     @NotNull
     @Size(min = 8, max = 20)
-    private String CEP;
+    private String cep;
 
     @Positive
     private int houseNumber;
@@ -36,12 +36,12 @@ public class AddressDTO {
     public AddressDTO() {
     }
 
-    public AddressDTO(Integer id, ReadUserDTO user, String street, String neighborhood, String CEP, int houseNumber, String city, String localType) {
+    public AddressDTO(Integer id, ReadUserDTO user, String street, String neighborhood, String cep, int houseNumber, String city, String localType) {
         this.id = id;
         this.user = user;
         this.street = street;
         this.neighborhood = neighborhood;
-        this.CEP = CEP;
+        this.cep = cep;
         this.houseNumber = houseNumber;
         this.city = city;
         this.localType = localType;
@@ -79,12 +79,12 @@ public class AddressDTO {
         this.neighborhood = neighborhood;
     }
 
-    public @NotNull @Size(min = 8, max = 20) String getCEP() {
-        return CEP;
+    public @NotNull @Size(min = 8, max = 20) String getCep() {
+        return cep;
     }
 
-    public void setCEP(@NotNull @Size(min = 8, max = 20) String CEP) {
-        this.CEP = CEP;
+    public void setCep(@NotNull @Size(min = 8, max = 20) String cep) {
+        this.cep = cep;
     }
 
     @Positive

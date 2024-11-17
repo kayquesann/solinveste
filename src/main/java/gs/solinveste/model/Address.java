@@ -29,7 +29,6 @@ public class Address {
     @Column(name = "CEP", length = 20, nullable = false)
     private String CEP;
 
-    @Positive
     @Column(name = "NUMERO_RESIDENCIA")
     private int houseNumber;
 

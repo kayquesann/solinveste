@@ -9,7 +9,7 @@ public class SaveAddressDTO {
 
     private Integer id;
 
-    private User user;
+    private Integer userId;
 
     @NotNull
     @Size(min = 1, max = 200)
@@ -21,7 +21,7 @@ public class SaveAddressDTO {
 
     @NotNull
     @Size(min = 8, max = 20)
-    private String CEP;
+    private String cep;
 
     @Positive
     private int houseNumber;
@@ -37,12 +37,12 @@ public class SaveAddressDTO {
     public SaveAddressDTO() {
     }
 
-    public SaveAddressDTO(Integer id, User user, String street, String neighborhood, String CEP, int houseNumber, String city, String localType) {
+    public SaveAddressDTO(Integer id, Integer userId, String street, String neighborhood, String cep, int houseNumber, String city, String localType) {
         this.id = id;
-        this.user = user;
+        this.userId = userId;
         this.street = street;
         this.neighborhood = neighborhood;
-        this.CEP = CEP;
+        this.cep = cep;
         this.houseNumber = houseNumber;
         this.city = city;
         this.localType = localType;
@@ -56,12 +56,12 @@ public class SaveAddressDTO {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public @NotNull @Size(min = 1, max = 200) String getStreet() {
@@ -80,12 +80,12 @@ public class SaveAddressDTO {
         this.neighborhood = neighborhood;
     }
 
-    public @NotNull @Size(min = 8, max = 20) String getCEP() {
-        return CEP;
+    public @NotNull @Size(min = 8, max = 20) String getCep() {
+        return cep;
     }
 
-    public void setCEP(@NotNull @Size(min = 8, max = 20) String CEP) {
-        this.CEP = CEP;
+    public void setCep(@NotNull @Size(min = 8, max = 20) String cep) {
+        this.cep = cep;
     }
 
     @Positive

@@ -15,19 +15,15 @@ public class SolarPanelBudget {
     @OneToOne
     private Address addressBudget;
 
-    @PositiveOrZero
     @Column(name = "CUSTO_INVESTIMENTO")
     private double investmentCost;
 
-    @PositiveOrZero
     @Column(name = "TAMANHO_SISTEMA")
     private double systemSize;
 
-    @PositiveOrZero
     @Column(name = "NUMERO_MODULOS")
     private int modulesNumber;
 
-    @PositiveOrZero
     @Column(name = "PRODUCAO_ANUAL_ESTIMADA")
     private double estimatedAnnualProduction;
 

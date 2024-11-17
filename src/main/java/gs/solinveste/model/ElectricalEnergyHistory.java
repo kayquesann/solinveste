@@ -19,10 +19,8 @@ public class ElectricalEnergyHistory {
     @OneToOne
     private Address addressHistory;
 
-    @PositiveOrZero
     @Column(name = "CONSUMO")
     private double consumption;
-
 
     @Column(name = "UNIDADE_MEDIDA", length = 10, nullable = false)
     private String measurementUnit;
@@ -30,7 +28,6 @@ public class ElectricalEnergyHistory {
     @Column(name = "DATA_REGISTRO")
     private LocalDate registryDate;
 
-    @PositiveOrZero
     @Column(name = "CUSTO")
     private double cost;
 
