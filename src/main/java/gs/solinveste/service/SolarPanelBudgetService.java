@@ -30,7 +30,7 @@ public class SolarPanelBudgetService {
         this.addressRepository = addressRepository;
     }
 
-    private Address findAddressById(Integer addressId) {
+    private Address findAddressById(Integer addressId) throws EntityNotFoundException {
         Optional<Address> address = addressRepository.findById(addressId);
         if (address.isEmpty()) {
             throw new EntityNotFoundException("Endereço não encontrado");

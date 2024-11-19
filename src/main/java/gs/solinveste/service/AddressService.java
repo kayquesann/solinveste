@@ -28,7 +28,7 @@ public class AddressService {
         this.userRepository = userRepository;
     }
 
-    private User findUserById(Integer userId) {
+    private User findUserById(Integer userId) throws EntityNotFoundException {
         Optional<User> user = userRepository.findById(userId);
         if (user.isEmpty()) {
             throw new EntityNotFoundException("Usuário não encontrado");

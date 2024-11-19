@@ -24,7 +24,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    private User findUserById(Integer id) {
+    private User findUserById(Integer id) throws EntityNotFoundException {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return user.get();
