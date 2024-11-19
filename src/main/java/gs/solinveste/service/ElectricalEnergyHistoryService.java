@@ -29,6 +29,14 @@ public class ElectricalEnergyHistoryService {
         this.addressRepository = addressRepository;
     }
 
+    private Address findAddressById(Integer addressId) {
+        Optional<Address> address = addressRepository.findById(addressId);
+        if (address.isEmpty()) {
+            throw new EntityNotFoundException("Endereço não encontrado");
+        }
+        return address.get();
+    }
+
     public ElectricalEnergyHistoryDTO convertToDTO (ElectricalEnergyHistory electricalEnergyHistory) {
         ElectricalEnergyHistoryDTO electricalEnergyHistoryDTO = new ElectricalEnergyHistoryDTO();
         electricalEnergyHistoryDTO.setId(electricalEnergyHistory.getId());
@@ -50,11 +58,7 @@ public class ElectricalEnergyHistoryService {
     }
 
     public Set<ElectricalEnergyHistoryDTO> readElectricalEnergyHistoryByAddressId (Integer addressId) {
-        Optional<Address> address = addressRepository.findById(addressId);
-        if (address.isEmpty()) {
-            throw new EntityNotFoundException("Endereço não encontrado");
-        }
-        Address existingAddress = address.get();
+        Address existingAddress = findAddressById(addressId);
         Set<ElectricalEnergyHistory> electricalEnergyHistory = existingAddress.getHistory();
 
         return electricalEnergyHistory.stream()
@@ -69,11 +73,7 @@ public class ElectricalEnergyHistoryService {
     }
 
     public ElectricalEnergyHistoryDTO saveElectricalEnergyHistory (ElectricalEnergyHistoryDTO electricalEnergyHistoryDTO) {
-        Optional<Address> address = addressRepository.findById(electricalEnergyHistoryDTO.getAddressHistoryId());
-        if (address.isEmpty()) {
-            throw new EntityNotFoundException("Endereço não encontrado");
-        }
-        Address existingAddress = address.get();
+        Address existingAddress = findAddressById(electricalEnergyHistoryDTO.getAddressHistoryId());
         ElectricalEnergyHistory electricalEnergyHistory = convertToEntity(electricalEnergyHistoryDTO);
         electricalEnergyHistory.setAddressHistory(existingAddress);
         ElectricalEnergyHistory savedElectricalEnergyHistory = electricalEnergyHistoryRepository.save(electricalEnergyHistory);

@@ -24,6 +24,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    private User findUserById(Integer id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new EntityNotFoundException("Usuário não encontrado");
+        }
+    }
+
     // Convert an entity to DTO to save a new user
 
     public SaveUserDTO convertToSaveUserDTO (User user) {
@@ -72,24 +81,16 @@ public class UserService {
 
     @Transactional
     public void deleteUser (Integer id) {
-        if (!userRepository.existsById(id)) {
-            throw new EntityNotFoundException("Usuário não encontrado");
-        }
         userRepository.deleteById(id);
+        findUserById(id);
     }
 
     //Read a user
 
     @Transactional
     public ReadUserDTO readUser (Integer id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            User existingUser = user.get();
+            User existingUser = findUserById(id);
             return convertToReadUserDTO(existingUser);
-        } else {
-            throw new EntityNotFoundException("Usuário não encontrado");
-        }
-
     }
 
     //Read all of users
@@ -104,42 +105,27 @@ public class UserService {
     //update the email from a user
 
     public ReadUserDTO updateEmail (Integer id, String email) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            User existingUser = user.get();
+            User existingUser = findUserById(id);
             existingUser.setEmail(email);
             userRepository.save(existingUser);
             return convertToReadUserDTO(existingUser);
-        }else {
-            throw new EntityNotFoundException("Usuário não encontrado");
-        }
     }
 
     //update the password from a user
 
     public String updatePassword (Integer id, String password) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            User existingUser = user.get();
+            User existingUser = findUserById(id);
             existingUser.setPassword(password);
             userRepository.save(existingUser);
             return "Senha atualizada com sucesso";
-        }else {
-            throw new EntityNotFoundException("Usuário não encontrado");
-        }
     }
 
     //update the phone number from a user
 
     public ReadUserDTO updatePhoneNumber (Integer id, String phoneNumber) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            User existingUser = user.get();
+            User existingUser = findUserById(id);
             existingUser.setPhoneNumber(phoneNumber);
             userRepository.save(existingUser);
             return convertToReadUserDTO(existingUser);
-        }else {
-            throw new EntityNotFoundException("Usuário não encontrado");
-        }
     }
 }

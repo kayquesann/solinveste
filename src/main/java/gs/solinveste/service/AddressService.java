@@ -28,6 +28,14 @@ public class AddressService {
         this.userRepository = userRepository;
     }
 
+    private User findUserById(Integer userId) {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new EntityNotFoundException("Usuário não encontrado");
+        }
+        return user.get();
+    }
+
     public SaveAddressDTO convertToSaveAddressDTO (Address address) {
         SaveAddressDTO saveAddressDTO = new SaveAddressDTO();
         saveAddressDTO.setId(address.getId());
@@ -54,11 +62,7 @@ public class AddressService {
 
 
     public Set<SaveAddressDTO> readAddressByUser (Integer userId) {
-        Optional<User> user  = userRepository.findById(userId);
-        if (user.isEmpty()) {
-            throw new EntityNotFoundException("Usuário não encontrado");
-        }
-        User existingUser = user.get();
+        User existingUser = findUserById(userId);
         Set<Address> addresses = existingUser.getAddresses();
         return addresses.stream()
                 .map(this::convertToSaveAddressDTO).
@@ -66,11 +70,7 @@ public class AddressService {
     }
 
     public SaveAddressDTO saveAddress (SaveAddressDTO saveAddressDTO) {
-        Optional<User> user = userRepository.findById(saveAddressDTO.getUserId());
-        if (user.isEmpty()) {
-            throw new EntityNotFoundException("Usuário não encontrado");
-        }
-        User existingUser = user.get();
+        User existingUser = findUserById(saveAddressDTO.getUserId());
         Address address = convertToEntity(saveAddressDTO);
         address.setUser(existingUser);
         Address savedAddress = addressRepository.save(address);

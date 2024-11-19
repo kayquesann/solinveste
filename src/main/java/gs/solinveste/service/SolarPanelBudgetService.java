@@ -30,6 +30,14 @@ public class SolarPanelBudgetService {
         this.addressRepository = addressRepository;
     }
 
+    private Address findAddressById(Integer addressId) {
+        Optional<Address> address = addressRepository.findById(addressId);
+        if (address.isEmpty()) {
+            throw new EntityNotFoundException("Endereço não encontrado");
+        }
+        return address.get();
+    }
+
     public SolarPanelBudgetDTO convertToDTO (SolarPanelBudget solarPanelBudget) {
         SolarPanelBudgetDTO solarPanelBudgetDTO = new SolarPanelBudgetDTO();
         solarPanelBudgetDTO.setId(solarPanelBudget.getId());
@@ -51,11 +59,7 @@ public class SolarPanelBudgetService {
     }
 
     public Set<SolarPanelBudgetDTO> readSolarPanelBudgetByAddress (Integer addressId) {
-        Optional<Address> address = addressRepository.findById(addressId);
-        if (address.isEmpty()) {
-            throw new EntityNotFoundException("Orçamento não encontrado");
-        }
-        Address existingAddress = address.get();
+        Address existingAddress = findAddressById(addressId);
         Set<SolarPanelBudget> solarPanelBudgets = existingAddress.getBudgets();
 
         return solarPanelBudgets.stream()
@@ -70,11 +74,7 @@ public class SolarPanelBudgetService {
     }
 
     public SolarPanelBudgetDTO saveSolarPanelBudget (SolarPanelBudgetDTO solarPanelBudgetDTO) {
-        Optional<Address> address = addressRepository.findById(solarPanelBudgetDTO.getAddressBudgetId());
-        if (address.isEmpty()) {
-            throw new EntityNotFoundException("Endereço não encontrado");
-        }
-        Address existingAddress = address.get();
+        Address existingAddress = findAddressById(solarPanelBudgetDTO.getAddressBudgetId());
         SolarPanelBudget solarPanelBudget = convertToEntity(solarPanelBudgetDTO);
         solarPanelBudget.setAddressBudget(existingAddress);
         SolarPanelBudget savedSolarPanelBudget = solarPanelBudgetRepository.save(solarPanelBudget);
