@@ -3,6 +3,7 @@ package gs.solinveste.service;
 import gs.solinveste.dto.ElectricalEnergyHistoryDTO;
 import gs.solinveste.model.Address;
 import gs.solinveste.model.ElectricalEnergyHistory;
+import gs.solinveste.model.User;
 import gs.solinveste.repository.AddressRepository;
 import gs.solinveste.repository.ElectricalEnergyHistoryRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -31,7 +32,7 @@ public class ElectricalEnergyHistoryService {
     public ElectricalEnergyHistoryDTO convertToDTO (ElectricalEnergyHistory electricalEnergyHistory) {
         ElectricalEnergyHistoryDTO electricalEnergyHistoryDTO = new ElectricalEnergyHistoryDTO();
         electricalEnergyHistoryDTO.setId(electricalEnergyHistory.getId());
-        electricalEnergyHistoryDTO.setAddressHistory(electricalEnergyHistory.getAddressHistory());
+        electricalEnergyHistoryDTO.setAddressHistoryId(electricalEnergyHistory.getAddressHistory().getId());
         electricalEnergyHistoryDTO.setConsumption(electricalEnergyHistory.getConsumption());
         electricalEnergyHistoryDTO.setCost(electricalEnergyHistory.getCost());
         electricalEnergyHistoryDTO.setRegistryDate(electricalEnergyHistory.getRegistryDate());
@@ -44,7 +45,6 @@ public class ElectricalEnergyHistoryService {
         electricalEnergyHistory.setConsumption(electricalEnergyHistoryDTO.getConsumption());
         electricalEnergyHistory.setCost(electricalEnergyHistoryDTO.getCost());
         electricalEnergyHistory.setRegistryDate(electricalEnergyHistoryDTO.getRegistryDate());
-        electricalEnergyHistory.setAddressHistory(electricalEnergyHistoryDTO.getAddressHistory());
         electricalEnergyHistory.setMeasurementUnit(electricalEnergyHistoryDTO.getMeasurementUnit());
         return electricalEnergyHistory;
     }
@@ -69,7 +69,13 @@ public class ElectricalEnergyHistoryService {
     }
 
     public ElectricalEnergyHistoryDTO saveElectricalEnergyHistory (ElectricalEnergyHistoryDTO electricalEnergyHistoryDTO) {
+        Optional<Address> address = addressRepository.findById(electricalEnergyHistoryDTO.getAddressHistoryId());
+        if (address.isEmpty()) {
+            throw new EntityNotFoundException("Endereço não encontrado");
+        }
+        Address existingAddress = address.get();
         ElectricalEnergyHistory electricalEnergyHistory = convertToEntity(electricalEnergyHistoryDTO);
+        electricalEnergyHistory.setAddressHistory(existingAddress);
         ElectricalEnergyHistory savedElectricalEnergyHistory = electricalEnergyHistoryRepository.save(electricalEnergyHistory);
         return convertToDTO(savedElectricalEnergyHistory);
     }

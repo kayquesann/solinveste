@@ -1,6 +1,5 @@
 package gs.solinveste.controller;
 
-import gs.solinveste.dto.AddressDTO;
 import gs.solinveste.dto.SaveAddressDTO;
 import gs.solinveste.service.AddressService;
 import jakarta.validation.Valid;
@@ -19,13 +18,13 @@ public class AddressController {
     private AddressService addressService;
 
     @GetMapping("{userId}")
-    public ResponseEntity<Set<AddressDTO>> readAddressByUser (@PathVariable Integer userId) {
-        Set<AddressDTO> addressesDTO = addressService.readAddressByUser(userId);
+    public ResponseEntity<Set<SaveAddressDTO>> readAddressByUser (@PathVariable Integer userId) {
+        Set<SaveAddressDTO> addressesDTO = addressService.readAddressByUser(userId);
         return ResponseEntity.ok(addressesDTO);
     }
 
     @GetMapping
-    public ResponseEntity<List<AddressDTO>> readAllAddresses () {
+    public ResponseEntity<List<SaveAddressDTO>> readAllAddresses () {
         return ResponseEntity.ok(addressService.readAllAddresses());
     }
 

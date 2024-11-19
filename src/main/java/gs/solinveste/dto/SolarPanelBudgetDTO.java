@@ -8,7 +8,7 @@ public class SolarPanelBudgetDTO {
 
     private Integer id;
 
-    private Address addressBudget;
+    private Integer addressBudgetId;
 
     private double investmentCost;
 
@@ -24,9 +24,9 @@ public class SolarPanelBudgetDTO {
     public SolarPanelBudgetDTO() {
     }
 
-    public SolarPanelBudgetDTO(Integer id, Address addressBudget, double investmentCost, double systemSize, int modulesNumber, double estimatedAnnualProduction) {
+    public SolarPanelBudgetDTO(Integer id, Integer addressBudgetId, double investmentCost, double systemSize, int modulesNumber, double estimatedAnnualProduction) {
         this.id = id;
-        this.addressBudget = addressBudget;
+        this.addressBudgetId = addressBudgetId;
         this.investmentCost = investmentCost;
         this.systemSize = systemSize;
         this.modulesNumber = modulesNumber;
@@ -41,12 +41,12 @@ public class SolarPanelBudgetDTO {
         this.id = id;
     }
 
-    public Address getAddressBudget() {
-        return addressBudget;
+    public Integer getAddressBudgetId() {
+        return addressBudgetId;
     }
 
-    public void setAddressBudget(Address addressBudget) {
-        this.addressBudget = addressBudget;
+    public void setAddressBudgetId(Integer addressBudgetId) {
+        this.addressBudgetId = addressBudgetId;
     }
 
     public double getInvestmentCost() {

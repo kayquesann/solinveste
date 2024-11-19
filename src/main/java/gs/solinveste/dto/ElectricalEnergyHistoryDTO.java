@@ -12,7 +12,7 @@ public class ElectricalEnergyHistoryDTO {
 
     private Integer id;
 
-    private Address addressHistory;
+    private Integer addressHistoryId;
 
     @PositiveOrZero
     private double consumption;
@@ -30,9 +30,9 @@ public class ElectricalEnergyHistoryDTO {
     public ElectricalEnergyHistoryDTO() {
     }
 
-    public ElectricalEnergyHistoryDTO(Integer id, Address addressHistory, double consumption, String measurementUnit, LocalDate registryDate, double cost) {
+    public ElectricalEnergyHistoryDTO(Integer id, Integer addressHistoryId, double consumption, String measurementUnit, LocalDate registryDate, double cost) {
         this.id = id;
-        this.addressHistory = addressHistory;
+        this.addressHistoryId = addressHistoryId;
         this.consumption = consumption;
         this.measurementUnit = measurementUnit;
         this.registryDate = registryDate;
@@ -47,12 +47,12 @@ public class ElectricalEnergyHistoryDTO {
         this.id = id;
     }
 
-    public Address getAddressHistory() {
-        return addressHistory;
+    public Integer getAddressHistoryId() {
+        return addressHistoryId;
     }
 
-    public void setAddressHistory(Address addressHistory) {
-        this.addressHistory = addressHistory;
+    public void setAddressHistoryId(Integer addressHistoryId) {
+        this.addressHistoryId = addressHistoryId;
     }
 
     @PositiveOrZero

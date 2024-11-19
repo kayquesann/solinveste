@@ -33,7 +33,7 @@ public class SolarPanelBudgetService {
     public SolarPanelBudgetDTO convertToDTO (SolarPanelBudget solarPanelBudget) {
         SolarPanelBudgetDTO solarPanelBudgetDTO = new SolarPanelBudgetDTO();
         solarPanelBudgetDTO.setId(solarPanelBudget.getId());
-        solarPanelBudgetDTO.setAddressBudget(solarPanelBudget.getAddressBudget());
+        solarPanelBudgetDTO.setAddressBudgetId(solarPanelBudget.getAddressBudget().getId());
         solarPanelBudgetDTO.setInvestmentCost(solarPanelBudget.getInvestmentCost());
         solarPanelBudgetDTO.setSystemSize(solarPanelBudget.getSystemSize());
         solarPanelBudgetDTO.setModulesNumber(solarPanelBudget.getModulesNumber());
@@ -43,7 +43,6 @@ public class SolarPanelBudgetService {
 
     public SolarPanelBudget convertToEntity (SolarPanelBudgetDTO solarPanelBudgetDTO) {
         SolarPanelBudget solarPanelBudget = new SolarPanelBudget();
-        solarPanelBudget.setAddressBudget(solarPanelBudgetDTO.getAddressBudget());
         solarPanelBudget.setSystemSize(solarPanelBudgetDTO.getSystemSize());
         solarPanelBudget.setModulesNumber(solarPanelBudgetDTO.getModulesNumber());
         solarPanelBudget.setInvestmentCost(solarPanelBudgetDTO.getInvestmentCost());
@@ -71,7 +70,13 @@ public class SolarPanelBudgetService {
     }
 
     public SolarPanelBudgetDTO saveSolarPanelBudget (SolarPanelBudgetDTO solarPanelBudgetDTO) {
+        Optional<Address> address = addressRepository.findById(solarPanelBudgetDTO.getAddressBudgetId());
+        if (address.isEmpty()) {
+            throw new EntityNotFoundException("Endereço não encontrado");
+        }
+        Address existingAddress = address.get();
         SolarPanelBudget solarPanelBudget = convertToEntity(solarPanelBudgetDTO);
+        solarPanelBudget.setAddressBudget(existingAddress);
         SolarPanelBudget savedSolarPanelBudget = solarPanelBudgetRepository.save(solarPanelBudget);
         return convertToDTO(savedSolarPanelBudget);
     }
