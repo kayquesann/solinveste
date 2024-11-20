@@ -83,3 +83,11 @@ spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
 ![Alt Text](src/main/resources/images/imagem4.png)
 
 ![Alt Text](src/main/resources/images/imagem5.png)
+
+## 📌 Rotas de Endpoints
+
+Utilize o arquivo que está na pasta raiz do projeto:
+
+`Solinveste API.postman_collection.json`
+
+e importe no Postman para consumir todas as rotas e endpoints.
