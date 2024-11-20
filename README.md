@@ -91,3 +91,7 @@ Utilize o arquivo que está na pasta raiz do projeto:
 `Solinveste API.postman_collection.json`
 
 e importe no Postman para consumir todas as rotas e endpoints.
+
+## Links dos Videos
+
+Link do PITCH - https://youtu.be/8vf6YciO0nc
