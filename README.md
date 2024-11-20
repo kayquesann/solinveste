@@ -74,4 +74,6 @@ spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
 
 7. Acesse sua ferramenta de teste para interagir com a API
 
+## Imagens da Aplicação
 
+![Alt Text] (src/main/resources/images/imagem2.png)
