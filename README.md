@@ -84,6 +84,9 @@ spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
 
 ![Alt Text](src/main/resources/images/imagem5.png)
 
+## URL para acessar a aplicação via deploy
+[20.110.90.16:8080](http://20.110.90.16:8080)
+
 ## 📌 Rotas de Endpoints
 
 Utilize o arquivo que está na pasta raiz do projeto:
