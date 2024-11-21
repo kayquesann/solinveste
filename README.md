@@ -95,3 +95,5 @@ e importe no Postman para consumir todas as rotas e endpoints.
 ## Links dos Videos
 
 Link do PITCH - https://youtu.be/8vf6YciO0nc
+
+Link do video demonstrando o funcionamento do software - https://youtu.be/FTba4rGCOvE

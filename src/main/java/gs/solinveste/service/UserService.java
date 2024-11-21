@@ -81,8 +81,9 @@ public class UserService {
 
     @Transactional
     public void deleteUser (Integer id) {
-        userRepository.deleteById(id);
-        findUserById(id);
+        User existingUser = findUserById(id);
+        userRepository.deleteById(existingUser.getId());
+
     }
 
     //Read a user
@@ -120,12 +121,5 @@ public class UserService {
             return "Senha atualizada com sucesso";
     }
 
-    //update the phone number from a user
 
-    public ReadUserDTO updatePhoneNumber (Integer id, String phoneNumber) {
-            User existingUser = findUserById(id);
-            existingUser.setPhoneNumber(phoneNumber);
-            userRepository.save(existingUser);
-            return convertToReadUserDTO(existingUser);
-    }
 }
